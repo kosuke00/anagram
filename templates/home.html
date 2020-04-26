@@ -1,0 +1,11 @@
+{% extends "base.html"%}
+
+{% block contents %}
+<form action="anagram" method="post" >
+  {% csrf_token %}
+  enter your name: <input type="text" name="user_name">
+  <input type="hidden" name="ana_word" value="">
+  <input type="hidden" name="chosen_word" value="">
+  <input type="submit" value="make anagram">
+</form>
+{% endblock contents %}

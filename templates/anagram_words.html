@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+
+{% block contents %}
+{% if name == "" %}
+  <h1>      Finished!!!     </h1><br>
+  <h2>This is your anagram: {{choice}}<h2>
+
+{% elif ana == "no words left" %}
+  Left letters: {{name}}<br>
+  choose one word from here: NO WORDS LEFT!!! START OVER DAMN ASS!!!<br>
+  {{txt}}{{choice}}
+
+
+{% else %}
+Left letters: {{name}}<br>
+choose one word from here: {{ana}}<br>
+{{txt}}{{choice}}
+<form action="anagram" method="post">
+  {% csrf_token %}
+  paste word here<input type="text" name="ana_word">
+  <input type="hidden" name="user_name" value="{{ name }}">
+  <input type="hidden" name="chosen_word" value="{{ choice }}">
+  <input type="submit" value="ok">
+</form>
+{% endif %}
+<p> Start over? <a href="{% url "home" %}">click here</a></p>
+{% endblock contents %}
